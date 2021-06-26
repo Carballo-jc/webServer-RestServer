@@ -4,13 +4,17 @@
   "description": "proyecto aplicacion Rest Server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
-  "author": "Jose Carball",
+  "author": "Jose Carballo",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-validator": "^6.12.0",
+    "mongoose": "^5.12.14"
   }
 }
