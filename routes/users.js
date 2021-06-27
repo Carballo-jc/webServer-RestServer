@@ -6,8 +6,18 @@ const {
   createUsers,
   deleteUsers,
 } = require("../controllers/users");
-const { validateRole, validateEmail } = require("../helpers/validate-db");
-const { validateInputs } = require("../middlewares/validate-input");
+const {
+  validateRole,
+  validateEmail,
+  validateId,
+} = require("../helpers/validate-db");
+
+const {
+  validateInputs,
+  validateJWT,
+  isAdmintRole,
+  isRole,
+} = require("../middlewares");
 
 const router = Router();
 
@@ -36,6 +46,17 @@ router.post(
   ],
   createUsers
 );
-router.delete("/:id", deleteUsers);
+router.delete(
+  "/:id",
+  [
+    validateJWT,
+    isAdmintRole,
+    isRole("ADMIN_ROLE,USER_ROLE, VENTAS_ROLE"),
+    check("id", "No es un ID valido").isMongoId(),
+    check("id").custom((id) => validateId(id)),
+    validateInputs,
+  ],
+  deleteUsers
+);
 
 module.exports = router;

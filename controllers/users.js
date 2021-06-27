@@ -49,13 +49,16 @@ const createUsers = async (req, res) => {
   });
 };
 const deleteUsers = async(req, res) => {
-  const {id}= req.params;
+  const { id } = req.params;
+  const uid = req.uid;
   //borrar fisicamente de la BD,
   // const user = await User.findByIdAndDelete(id);
-  const user = await User.findByIdAndUpdate(id,{status:false});
+  //borrar de la respuesta pero no de la BD
+  const user = await User.findByIdAndUpdate(id, { status: false });
+  // const userAuthenticate = req.user;
   res.json({
     msg: "DELETE user API",
-    user
+    user,
   });
 };
 module.exports = {
