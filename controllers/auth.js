@@ -43,4 +43,10 @@ const authLogin = async (req, res) => {
   }
 };
 
-module.exports = { authLogin };
+const googleSignIn = (req, res) => {
+  res.json({
+    msg: "Todo ok!",
+  });
+};
+
+module.exports = { authLogin, googleSignIn };
